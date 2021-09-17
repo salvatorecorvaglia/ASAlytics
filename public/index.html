@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Live and historical cryptocurrency prices."
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>ASAlytics</title>
+    <style>
+      :root {
+        --background-color: #fff;
+        --translucent-background-color: rgba(255, 255, 255, 0.5);
+        --header-color: #fafafa;
+        --contrast-color: #111;
+        --axis-color: rgb(230, 230, 230);
+        --attribute-color: #333;
+        --accent-color: #1652f0;
+        --small-font: 14px;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --background-color: #111111;
+          --translucent-background-color: rgba(17, 17, 17, 0.5);
+          --header-color: #222222;
+          --contrast-color: #fafafa;
+          --axis-color: #333333;
+          --attribute-color: #999999;
+          --accent-color: #1652f0;
+          --small-font: 14px;
+        }
+      }
+
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+          "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+          "Helvetica Neue", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: var(--background-color);
+        color: var(--contrast-color);
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+
+      main {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+      }
+
+      code {
+        font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+          monospace;
+      }
+
+      svg {
+        z-index: 1;
+      }
+
+      label {
+        font-size: var(--small-font);
+      }
+
+      header {
+        background-color: var(--header-color);
+        border-bottom: solid 1px var(--axis-color);
+        margin-bottom: 16px;
+      }
+
+      footer {
+        background-color: var(--header-color);
+      }
+
+      button {
+        background-color: var(--axis-color);
+        font-size: var(--small-font);
+        border: none;
+        border-radius: 3px;
+        margin: 2px;
+        color: var(--contrast-color);
+        min-width: 40px;
+        min-height: 24px;
+      }
+
+      button:disabled {
+        background-color: var(--attribute-color);
+        color: var(--background-color);
+      }
+
+      a {
+        color: var(--contrast-color);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      .ma0 {
+        margin: 0;
+      }
+
+      .mb16 {
+        margin-bottom: 16px;
+      }
+
+      .my8 {
+        margin: 8px 0;
+      }
+
+      .mt8 {
+        margin-top: 8px;
+      }
+
+      .m16 {
+        margin: 16px;
+      }
+
+      .my16 {
+        margin: 16px 0;
+      }
+
+      .p16 {
+        padding: 16px;
+      }
+
+      .p32 {
+        padding: 32px;
+      }
+
+      .small-font {
+        font-size: var(--small-font);
+      }
+
+      .flex {
+        display: flex;
+      }
+
+      .flex-wrap {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .center-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+      }
+
+      .non-select * {
+        user-select: none;
+        -webkit-user-select: none;
+      }
+
+      .relative {
+        position: relative;
+      }
+
+      .attribute {
+        color: var(--attribute-color);
+      }
+
+      .accent {
+        color: var(--accent-color);
+      }
+
+      .ActiveLine {
+        height: 100%;
+        width: 1px;
+        position: absolute;
+        z-index: 1;
+        pointer-events: none;
+        touch-action: none;
+      }
+
+      .ActiveCircle {
+        position: absolute;
+        border-radius: 50%;
+        border: solid 2px var(--background-color);
+        z-index: 2;
+        pointer-events: none;
+        touch-action: none;
+      }
+
+      .HorizontalGridLine {
+        width: 100%;
+        height: 1px;
+        position: absolute;
+        z-index: -1;
+        border-top: solid 1px var(--axis-color);
+      }
+
+      .VerticalGridLine {
+        height: 100%;
+        width: 1px;
+        position: absolute;
+        z-index: -1;
+        border-left: solid 1px var(--axis-color);
+      }
+
+      .Label {
+        position: absolute;
+        padding: 1px 3px;
+        margin-top: 1px;
+        border-radius: 0 3px 3px 0;
+        pointer-events: none;
+        touch-action: none;
+        background: var(--translucent-background-color);
+      }
+
+      .Title {
+        background: #000;
+        color: #fff;
+        padding: 8px;
+        border-radius: 8px;
+      }
+
+      .Icon {
+        background: var(--accent-color);
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        color: var(--background-color);
+        padding: 0 4px;
+        border-radius: 8px;
+        margin-left: 16px;
+      }
+
+      .LoadingSpinner {
+        display: inline-block;
+        position: relative;
+        width: 80px;
+        height: 80px;
+      }
+      .LoadingSpinner div {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        width: 48px;
+        height: 48px;
+        margin: 8px;
+        border: 3px solid var(--axis-color);
+        border-radius: 50%;
+        animation: LoadingSpinner 1.4s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        border-color: var(--axis-color) transparent transparent transparent;
+      }
+      .LoadingSpinner div:nth-child(1) {
+        animation-delay: -0.45s;
+      }
+      .LoadingSpinner div:nth-child(2) {
+        animation-delay: -0.3s;
+      }
+      .LoadingSpinner div:nth-child(3) {
+        animation-delay: -0.15s;
+      }
+      @keyframes LoadingSpinner {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>
