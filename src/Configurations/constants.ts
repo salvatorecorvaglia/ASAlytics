@@ -7,6 +7,8 @@ export const COINS = [
   "algorand",
   "planetwatch",
   "yieldly",
+  "smile-coin",
+  "opulous",
   "usd-coin",
   "tether",
 ];
