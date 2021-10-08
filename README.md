@@ -7,7 +7,7 @@ Algorand Standard Assets (ASA) provide a standardized, Layer-1 mechanism to repr
 [CoinGecko](https://www.coingecko.com/) was founded in 2014 by TM Lee (CEO) and Bobby Ong (COO) with the mission to democratize the access of crypto data and empower users with actionable insights.
 
 <p align="center">
-  <img src="https://github.com/salvatorecorvaglia/ASAlytics/blob/main/img/image1.jpg" />
+  <img src="https://github.com/salvatorecorvo/ASAlytics/blob/main/img/image1.jpg" />
 </p>
 
 ## Available Scripts
