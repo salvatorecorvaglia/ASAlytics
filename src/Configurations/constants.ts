@@ -9,6 +9,7 @@ export const COINS = [
   "yieldly",
   "smile-coin",
   "opulous",
+  "algogems",
   "usd-coin",
   "tether",
 ];
